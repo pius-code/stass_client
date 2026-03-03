@@ -37,11 +37,12 @@ export const Groq_LLMHandler = async (query: WAWebJS.Message) => {
         },
       ],
     });
-    msg.clearState();
+
     const content = response;
     console.log("LLM Response:", JSON.stringify(content, null, 2));
 
     query.reply(content.output_text);
+    msg.clearState();
     await addNewMessageAndUpdateHistory(
       userId,
       query.body,
